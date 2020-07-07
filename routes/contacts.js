@@ -53,7 +53,7 @@ router.post(
 // @route PUT api/contacts/:id
 // @desc Update contact
 // @access Private
-router.put('/:id', async (req, res) => {
+router.put('/:id',auth, async (req, res) => {
   const { name, email, phone, type } = req.body;
   // Build contact object
   const contactFields = {};
@@ -88,7 +88,8 @@ router.put('/:id', async (req, res) => {
 // @route DELETE api/contacts/:id
 // @desc Delete contact
 // @access Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',auth, async (req, res) => {
+  
   try {
     let contact = await Contact.findById(req.params.id);
 
